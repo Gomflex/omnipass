@@ -275,7 +275,51 @@ npm run lint
 
 ## Deployment
 
-### Production Build
+### Deploy to Vercel (Recommended for Frontend)
+
+Vercel is the easiest way to deploy your Next.js application. Follow these steps:
+
+1. **Push your code to GitHub**
+   ```bash
+   # If you haven't already, create a GitHub repository
+   # Then push your code:
+   git remote add origin https://github.com/YOUR_USERNAME/omnipass.git
+   git branch -M main
+   git push -u origin main
+   ```
+
+2. **Deploy to Vercel**
+   - Visit [vercel.com](https://vercel.com) and sign up/login
+   - Click "New Project"
+   - Import your GitHub repository (omnipass)
+   - Configure project:
+     - Framework Preset: Next.js
+     - Root Directory: `frontend`
+     - Build Command: `npm run build`
+     - Output Directory: `.next`
+   - Click "Deploy"
+
+3. **Environment Variables** (Optional)
+   - In Vercel project settings, add environment variables:
+     - `NEXT_PUBLIC_API_URL` - Your backend API URL (if using backend)
+
+4. **Access your deployed app**
+   - Vercel will provide a URL like: `https://omnipass-xxxxx.vercel.app`
+   - You can also add a custom domain in Vercel settings
+
+### Alternative: Deploy to Netlify
+
+1. **Push to GitHub** (same as above)
+2. Visit [netlify.com](https://netlify.com) and login
+3. Click "Add new site" → "Import an existing project"
+4. Select your GitHub repository
+5. Configure:
+   - Base directory: `frontend`
+   - Build command: `npm run build`
+   - Publish directory: `frontend/.next`
+6. Click "Deploy"
+
+### Production Build (Self-hosting)
 
 ```bash
 # Frontend production build
