@@ -55,8 +55,9 @@ export default function RegisterPage() {
 
       // Redirect to login page
       router.push('/login?registered=true');
-    } catch (err: any) {
-      setError(err.response?.data?.detail || 'Registration failed. Please try again.');
+    } catch (err: unknown) {
+      const error = err as { response?: { data?: { detail?: string } } };
+      setError(error.response?.data?.detail || 'Registration failed. Please try again.');
     } finally {
       setLoading(false);
     }
