@@ -5,7 +5,13 @@ export const mockUser = {
   email: 'tourist@example.com',
   name: 'John Doe',
   country: 'United States',
+  nationality: 'USA',
   preferred_language: 'en',
+  customer_id: 'OMP-USA-A1B2-123',
+  passport_number: 'A12345678',
+  date_of_birth: '1990-05-15',
+  passport_expiry: '2030-05-15',
+  phone: '+1-555-0123',
   created_at: '2025-01-01T00:00:00Z',
 };
 

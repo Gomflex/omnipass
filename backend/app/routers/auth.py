@@ -22,23 +22,32 @@ async def register(user_data: UserRegister, db: Session = Depends(get_db)):
     - **phone**: Optional phone number
     - **preferred_language**: Language code (en, ko, ja, zh, es, fr)
     """
+    print(f"[DEBUG] Registration attempt for email: {user_data.email}")
+
     # Check if email already exists
     existing_user = db.query(User).filter(User.email == user_data.email).first()
     if existing_user:
+        print(f"[DEBUG] Email already exists: {user_data.email}")
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Email already registered"
         )
 
     # Create new user
+    print(f"[DEBUG] Hashing password for new user: {user_data.email}")
     hashed_password = get_password_hash(user_data.password)
+    print(f"[DEBUG] Password hashed successfully")
     new_user = User(
         email=user_data.email,
         hashed_password=hashed_password,
         name=user_data.name,
         country=user_data.country,
         phone=user_data.phone,
-        preferred_language=user_data.preferred_language
+        preferred_language=user_data.preferred_language,
+        passport_number=user_data.passport_number,
+        date_of_birth=user_data.date_of_birth,
+        nationality=user_data.nationality,
+        passport_expiry=user_data.passport_expiry
     )
 
     db.add(new_user)
@@ -57,16 +66,32 @@ async def login(credentials: UserLogin, db: Session = Depends(get_db)):
     - **email**: User's email
     - **password**: User's password
     """
+    print(f"[DEBUG] Login attempt for email: {credentials.email}")
+
     # Find user by email
     user = db.query(User).filter(User.email == credentials.email).first()
     if not user:
+        print(f"[DEBUG] User not found: {credentials.email}")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password"
         )
 
+    print(f"[DEBUG] User found: {user.email}, verifying password...")
+
     # Verify password
-    if not verify_password(credentials.password, user.hashed_password):
+    try:
+        password_valid = verify_password(credentials.password, user.hashed_password)
+        print(f"[DEBUG] Password verification result: {password_valid}")
+
+        if not password_valid:
+            print(f"[DEBUG] Password verification failed for user: {credentials.email}")
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Incorrect email or password"
+            )
+    except Exception as e:
+        print(f"[DEBUG] Password verification error: {str(e)}")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password"

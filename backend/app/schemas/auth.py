@@ -12,7 +12,11 @@ class UserRegister(BaseModel):
     name: str = Field(..., min_length=1, max_length=100)
     country: str = Field(..., min_length=2, max_length=100)
     phone: Optional[str] = None
-    preferred_language: str = Field(default="en", pattern="^(en|ko|ja|zh|es|fr)$")
+    preferred_language: str = Field(default="en", pattern="^(en|ko|ja|zh|es|fr|id|vi|th|ru)$")
+    passport_number: Optional[str] = None
+    date_of_birth: Optional[str] = None
+    nationality: Optional[str] = None
+    passport_expiry: Optional[str] = None
 
 class UserLogin(BaseModel):
     """Schema for user login"""
@@ -37,6 +41,11 @@ class UserResponse(BaseModel):
     country: str
     phone: Optional[str] = None
     preferred_language: str
+    customer_id: Optional[str] = None
+    passport_number: Optional[str] = None
+    date_of_birth: Optional[str] = None
+    nationality: Optional[str] = None
+    passport_expiry: Optional[str] = None
     created_at: datetime
 
     class Config:

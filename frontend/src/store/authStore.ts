@@ -7,6 +7,12 @@ interface User {
   name: string;
   country: string;
   preferred_language: string;
+  customer_id?: string;
+  passport_number?: string;
+  date_of_birth?: string;
+  nationality?: string;
+  passport_expiry?: string;
+  phone?: string;
 }
 
 interface AuthState {
@@ -23,18 +29,28 @@ export const useAuthStore = create<AuthState>()(
       token: null,
       user: null,
       isAuthenticated: false,
-      setAuth: (token, user) =>
+      setAuth: (token, user) => {
+        // Store token in localStorage for API client
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('token', token);
+        }
         set({
           token,
           user,
           isAuthenticated: true,
-        }),
-      logout: () =>
+        });
+      },
+      logout: () => {
+        // Remove token from localStorage
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem('token');
+        }
         set({
           token: null,
           user: null,
           isAuthenticated: false,
-        }),
+        });
+      },
     }),
     {
       name: 'auth-storage',

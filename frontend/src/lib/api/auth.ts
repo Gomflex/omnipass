@@ -7,6 +7,11 @@ export interface RegisterData {
   country: string;
   phone?: string;
   preferred_language?: string;
+  passport_number?: string;
+  date_of_birth?: string;
+  nationality?: string;
+  passport_expiry?: string;
+  customer_id?: string;
 }
 
 export interface LoginData {
@@ -27,6 +32,11 @@ export interface UserResponse {
   country: string;
   phone?: string;
   preferred_language: string;
+  customer_id?: string;
+  passport_number?: string;
+  date_of_birth?: string;
+  nationality?: string;
+  passport_expiry?: string;
   created_at: string;
 }
 
