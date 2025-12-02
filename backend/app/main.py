@@ -1,12 +1,19 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import auth, users, points, stores, missions, chatbot
+from app.database import engine, Base
+from app.models.user import User  # Import all models here
 
 app = FastAPI(
     title="OMNIPASS API",
     description="Universal Points Platform for Tourists in South Korea",
     version="1.0.0"
 )
+
+# Create database tables on startup
+@app.on_event("startup")
+async def startup_event():
+    Base.metadata.create_all(bind=engine)
 
 # CORS middleware - Allow all origins in development
 app.add_middleware(
