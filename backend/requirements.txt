@@ -17,6 +17,7 @@ python-dotenv==1.0.1
 # API & Data validation
 pydantic==2.9.0
 pydantic-settings==2.6.0
+email-validator==2.1.0
 
 # AI & Chatbot (Choose one or install all for flexibility)
 openai==1.54.0                    # For OpenAI GPT models
