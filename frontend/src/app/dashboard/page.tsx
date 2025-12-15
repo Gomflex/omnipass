@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { mockPointBalance, mockTransactions, mockMissions, mockStats } from '@/lib/mockData';
 import { useAuthStore } from '@/store/authStore';
 import { useTranslation } from '@/hooks/useTranslation';
+import MemberQRCode from '@/components/MemberQRCode';
 
 const CHARGE_AMOUNTS = [1000, 3000, 5000, 10000, 20000, 50000];
 
@@ -89,6 +90,11 @@ export default function DashboardPage() {
                 </div>
               </div>
             </div>
+        </div>
+
+        {/* Member QR Code */}
+        <div className="mb-6">
+          <MemberQRCode size={180} />
         </div>
 
         {/* Main Grid */}

@@ -169,6 +169,14 @@ export const translations = {
       loginRequired: 'Please login to view your customer code',
       customerCode: 'Customer Code',
     },
+    qrCode: {
+      title: 'Member QR Code',
+      subtitle: 'Show this code at partner stores',
+      name: 'Name',
+      customerId: 'Customer ID',
+      email: 'Email',
+      instruction: 'Scan this QR code at checkout to earn points',
+    },
     stores: {
       title: 'Partner Stores',
       subtitle: 'Discover stores where you can earn and spend OMNI Points',
@@ -862,6 +870,14 @@ export const translations = {
       quickActions: '빠른 작업',
       loginRequired: '고객 코드를 보려면 로그인하세요',
       customerCode: '고객 코드',
+    },
+    qrCode: {
+      title: '회원 QR 코드',
+      subtitle: '제휴 매장에서 이 코드를 보여주세요',
+      name: '이름',
+      customerId: '고객 ID',
+      email: '이메일',
+      instruction: '결제 시 이 QR 코드를 스캔하여 포인트를 적립하세요',
     },
     stores: {
       title: '제휴 매장',
