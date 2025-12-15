@@ -43,7 +43,7 @@ export default function MyBookingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-indigo-900/20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-gray-50 to-gray-50 dark:from-gray-900 dark:via-gray-900/20 dark:to-gray-900/20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
         <div className="mb-8">
@@ -82,7 +82,7 @@ export default function MyBookingsPage() {
             <p className="text-4xl font-bold">{mockBookings.filter(b => b.status === 'confirmed').length}</p>
           </div>
 
-          <div className="bg-gradient-to-br from-vibrant-green-500 to-vibrant-green-600 rounded-xl p-6 text-white">
+          <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-xl p-6 text-white">
             <div className="flex items-center justify-between mb-2">
               <span className="text-white/90">Active Discount</span>
               <svg className="w-8 h-8 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -212,7 +212,7 @@ export default function MyBookingsPage() {
                       {booking.status === 'confirmed' && (
                         <button
                           onClick={() => handleAddToCalendar(booking)}
-                          className="w-full bg-gradient-to-r from-vibrant-blue-500 to-vibrant-blue-600 hover:from-vibrant-blue-600 hover:to-vibrant-blue-700 text-white font-bold py-2.5 px-4 rounded-lg transition-all hover:scale-[1.02] shadow-md flex items-center justify-center gap-2"
+                          className="w-full bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white font-bold py-2.5 px-4 rounded-lg transition-all hover:scale-[1.02] shadow-md flex items-center justify-center gap-2"
                         >
                           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />

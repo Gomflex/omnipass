@@ -16,7 +16,7 @@ class User(Base):
 
     id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
     email = Column(String, unique=True, index=True, nullable=False)
-    hashed_password = Column(String, nullable=False)
+    hashed_password = Column(String, nullable=True)  # Nullable for OAuth users
     name = Column(String, nullable=False)
     country = Column(String, nullable=False)
     phone = Column(String)
@@ -26,5 +26,9 @@ class User(Base):
     date_of_birth = Column(String)
     nationality = Column(String)
     passport_expiry = Column(String)
+    provider = Column(String, default="email")  # email, google, facebook, kakao
+    provider_id = Column(String)  # OAuth provider's user ID
+    profile_picture = Column(String)  # Profile picture URL from OAuth
+    last_login = Column(DateTime)  # Track last login time
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

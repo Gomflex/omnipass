@@ -8,11 +8,20 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE TABLE IF NOT EXISTS users (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     email VARCHAR(255) UNIQUE NOT NULL,
-    hashed_password VARCHAR(255) NOT NULL,
+    hashed_password VARCHAR(255),  -- Nullable for OAuth users
     name VARCHAR(100) NOT NULL,
     country VARCHAR(100) NOT NULL,
     phone VARCHAR(20),
     preferred_language VARCHAR(10) DEFAULT 'en',
+    customer_id VARCHAR(50) UNIQUE,
+    passport_number VARCHAR(50),
+    date_of_birth VARCHAR(20),
+    nationality VARCHAR(100),
+    passport_expiry VARCHAR(20),
+    provider VARCHAR(20) DEFAULT 'email',  -- email, google, facebook, kakao
+    provider_id VARCHAR(255),  -- OAuth provider's user ID
+    profile_picture TEXT,  -- Profile picture URL from OAuth
+    last_login TIMESTAMP,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -134,3 +143,63 @@ CREATE TRIGGER trigger_init_point_balance
 AFTER INSERT ON users
 FOR EACH ROW
 EXECUTE FUNCTION init_point_balance();
+
+-- Reviews table - Polymorphic association pattern
+CREATE TABLE IF NOT EXISTS reviews (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    entity_type VARCHAR(50) NOT NULL CHECK (entity_type IN ('medical_facility', 'sdm_package', 'store')),
+    entity_id VARCHAR(255) NOT NULL,
+    rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
+    comment TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT unique_user_entity UNIQUE (user_id, entity_type, entity_id)
+);
+
+-- Review replies table - For nested comments
+CREATE TABLE IF NOT EXISTS review_replies (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    review_id UUID NOT NULL REFERENCES reviews(id) ON DELETE CASCADE,
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    parent_reply_id UUID REFERENCES review_replies(id) ON DELETE CASCADE,
+    comment TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Review helpful votes table
+CREATE TABLE IF NOT EXISTS review_helpful (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    review_id UUID NOT NULL REFERENCES reviews(id) ON DELETE CASCADE,
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT unique_user_review_helpful UNIQUE (user_id, review_id)
+);
+
+-- Indexes for reviews performance
+CREATE INDEX idx_reviews_entity ON reviews(entity_type, entity_id);
+CREATE INDEX idx_reviews_user_id ON reviews(user_id);
+CREATE INDEX idx_reviews_created_at ON reviews(created_at DESC);
+CREATE INDEX idx_review_replies_review_id ON review_replies(review_id);
+CREATE INDEX idx_review_replies_parent ON review_replies(parent_reply_id);
+CREATE INDEX idx_review_helpful_review_id ON review_helpful(review_id);
+
+-- Trigger to update updated_at timestamp for reviews
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = CURRENT_TIMESTAMP;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_reviews_updated_at
+BEFORE UPDATE ON reviews
+FOR EACH ROW
+EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER trigger_review_replies_updated_at
+BEFORE UPDATE ON review_replies
+FOR EACH ROW
+EXECUTE FUNCTION update_updated_at_column();

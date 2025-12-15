@@ -7,6 +7,7 @@ import { authAPI } from '@/lib/api/auth';
 import { useAuthStore } from '@/store/authStore';
 import PassportScanner from '@/components/PassportScanner';
 import { useTranslation } from '@/hooks/useTranslation';
+import SocialLoginButtons from '@/components/SocialLoginButtons';
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -406,6 +407,8 @@ export default function RegisterPage() {
             {loading ? t.register.creatingAccount : t.register.createAccountButton}
           </button>
         </form>
+
+        <SocialLoginButtons />
 
         <p className="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
           {t.register.alreadyHaveAccount}{' '}

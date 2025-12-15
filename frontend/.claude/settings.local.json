@@ -13,7 +13,15 @@
       "Bash(echo:*)",
       "Bash(taskkill /F /PID 15104)",
       "Bash(dir:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(python:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm install)",
+      "Bash(npm i:*)",
+      "Bash(claude-code:*)",
+      "Bash(taskkill:*)"
     ],
     "deny": [],
     "ask": []

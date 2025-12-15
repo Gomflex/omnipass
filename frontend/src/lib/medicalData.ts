@@ -5,6 +5,7 @@ export interface MedicalFacility {
   id: string;
   name: string;
   nameEn: string;
+  nameKo?: string;
   category: 'plastic-surgery' | 'health-checkup';
   description: string;
   location: string;
@@ -167,8 +168,9 @@ export const plasticSurgeryClinics: MedicalFacility[] = [
 export const healthCheckupHospitals: MedicalFacility[] = [
   {
     id: 'hc-1',
-    name: 'Seoul National University Hospital',
+    name: '서울대학교병원',
     nameEn: 'Seoul National University Hospital',
+    nameKo: '서울대학교병원',
     category: 'health-checkup',
     description: 'Comprehensive health screening with advanced diagnostic equipment',
     location: 'Jongno-gu, Seoul',
@@ -191,8 +193,9 @@ export const healthCheckupHospitals: MedicalFacility[] = [
   },
   {
     id: 'hc-2',
-    name: 'Gangnam Severance Hospital',
+    name: '강남세브란스병원',
     nameEn: 'Gangnam Severance Hospital',
+    nameKo: '강남세브란스병원',
     category: 'health-checkup',
     description: 'International healthcare center with personalized health programs',
     location: 'Gangnam-gu, Seoul',
@@ -215,8 +218,9 @@ export const healthCheckupHospitals: MedicalFacility[] = [
   },
   {
     id: 'hc-3',
-    name: 'Asan Medical Center',
+    name: '서울아산병원',
     nameEn: 'Asan Medical Center',
+    nameKo: '서울아산병원',
     category: 'health-checkup',
     description: 'World-class medical facility with comprehensive screening programs',
     location: 'Songpa-gu, Seoul',
@@ -239,8 +243,9 @@ export const healthCheckupHospitals: MedicalFacility[] = [
   },
   {
     id: 'hc-4',
-    name: 'Samsung Medical Center',
+    name: '삼성서울병원',
     nameEn: 'Samsung Medical Center',
+    nameKo: '삼성서울병원',
     category: 'health-checkup',
     description: 'Premium healthcare with cutting-edge technology and personalized service',
     location: 'Gangnam-gu, Seoul',
@@ -308,7 +313,7 @@ export const getAllFacilities = (): MedicalFacility[] => {
 
 // Get localized facility name
 export const getFacilityName = (facility: MedicalFacility, locale: Locale = 'ko'): string => {
-  return locale === 'ko' ? facility.name : facility.nameEn;
+  return locale === 'ko' ? (facility.nameKo || facility.name) : facility.nameEn;
 };
 
 // Get facility by ID

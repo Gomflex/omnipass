@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { authAPI } from '@/lib/api/auth';
 import { useAuthStore } from '@/store/authStore';
 import { useTranslation } from '@/hooks/useTranslation';
+import SocialLoginButtons from '@/components/SocialLoginButtons';
 
 function LoginForm() {
   const router = useRouter();
@@ -128,6 +129,8 @@ function LoginForm() {
             {loading ? t.login.loggingIn : t.login.logInButton}
           </button>
         </form>
+
+        <SocialLoginButtons />
 
         <p className="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
           {t.login.noAccount}{' '}

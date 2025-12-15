@@ -55,7 +55,7 @@ export default function FAQPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-indigo-900/20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-gray-50 to-gray-50 dark:from-gray-900 dark:via-gray-900/20 dark:to-gray-900/20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-3">
           <span className="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">

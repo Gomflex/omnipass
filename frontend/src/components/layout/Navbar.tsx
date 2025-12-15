@@ -24,7 +24,7 @@ export default function Navbar() {
   return (
     <nav className="bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
-        <div className="flex items-center gap-2 h-16">
+        <div className="flex items-center gap-2 h-14">
           {/* Left - Logo */}
           <Link href="/" className="flex-shrink-0">
             <Image
@@ -53,8 +53,21 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Right - Menu */}
-          <div className="flex items-center">
+          {/* Right - Notifications & Menu */}
+          <div className="flex items-center gap-1">
+            {/* Notification Bell */}
+            <Link
+              href="/notifications"
+              className="relative p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900 rounded-md transition-colors"
+            >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              </svg>
+              {/* Notification Badge */}
+              <span className="absolute top-1 right-1 w-2 h-2 bg-vibrant-pink-500 rounded-full"></span>
+            </Link>
+
+            {/* Hamburger Menu */}
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -74,51 +87,70 @@ export default function Navbar() {
         {/* Mobile menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden border-t border-gray-200 dark:border-gray-800">
-            <div className="px-2 pt-2 pb-3 space-y-0.5">
-              {/* Main Pages */}
+            <div className="px-2 pt-1 pb-2 space-y-0.5">
+              {/* Promotion Categories */}
               <Link
-                href="/dashboard"
+                href="/categories"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`block px-3 py-2 text-sm font-medium rounded-md ${
-                  isActive('/dashboard')
+                  pathname?.startsWith('/categories')
                     ? 'text-accent-700 dark:text-accent-400 bg-accent-50 dark:bg-accent-950/20'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900'
                 }`}
               >
-                {t.nav.dashboard}
+                {t.nav.allCategories}
               </Link>
+
+              {/* Duty-Free Rewards */}
               <Link
-                href="/stores"
+                href="/duty-free"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`block px-3 py-2 text-sm font-medium rounded-md ${
-                  isActive('/stores')
+                  isActive('/duty-free')
                     ? 'text-accent-700 dark:text-accent-400 bg-accent-50 dark:bg-accent-950/20'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900'
                 }`}
               >
-                {t.nav.stores}
+                <div className="pl-4">{t.nav.dutyFreeRewards}</div>
               </Link>
+
+              {/* Plastic Surgery */}
               <Link
-                href="/missions"
+                href="/medical/plastic-surgery"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`block px-3 py-2 text-sm font-medium rounded-md ${
-                  isActive('/missions')
+                  pathname?.startsWith('/medical/plastic-surgery')
                     ? 'text-accent-700 dark:text-accent-400 bg-accent-50 dark:bg-accent-950/20'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900'
                 }`}
               >
-                {t.nav.missions}
+                <div className="pl-4">{t.categories.plasticSurgery}</div>
               </Link>
+
+              {/* Health Checkup */}
               <Link
-                href="/medical"
+                href="/medical/health-checkup"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`block px-3 py-2 text-sm font-medium rounded-md ${
-                  pathname?.startsWith('/medical')
+                  pathname?.startsWith('/medical/health-checkup')
                     ? 'text-accent-700 dark:text-accent-400 bg-accent-50 dark:bg-accent-950/20'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900'
                 }`}
               >
-                {t.nav.medical}
+                <div className="pl-4">{t.categories.healthCheckup}</div>
+              </Link>
+
+              {/* BE LOCAL - Korean Culture */}
+              <Link
+                href="/sdm"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`block px-3 py-2 text-sm font-medium rounded-md ${
+                  pathname?.startsWith('/sdm')
+                    ? 'text-accent-700 dark:text-accent-400 bg-accent-50 dark:bg-accent-950/20'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900'
+                }`}
+              >
+                <div className="pl-4">{t.categories.beLocal || 'BE LOCAL'}</div>
               </Link>
 
               {/* Settings */}
@@ -137,7 +169,7 @@ export default function Navbar() {
               </Link>
 
               {/* Divider */}
-              <div className="border-t border-gray-200 dark:border-gray-800 my-2"></div>
+              <div className="border-t border-gray-200 dark:border-gray-800 my-1"></div>
 
               {/* Company Pages */}
               <Link
@@ -170,7 +202,7 @@ export default function Navbar() {
               </Link>
 
               {/* Divider */}
-              <div className="border-t border-gray-200 dark:border-gray-800 my-2"></div>
+              <div className="border-t border-gray-200 dark:border-gray-800 my-1"></div>
 
               {/* Auth Section */}
               {isAuthenticated ? (

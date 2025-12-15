@@ -5,6 +5,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 import { getTranslatedFacilityById } from '@/lib/medicalData';
 import Image from 'next/image';
 import Link from 'next/link';
+import ReviewSection from '@/components/ReviewSection';
 
 export default function FacilityDetailPage() {
   const params = useParams();
@@ -16,7 +17,7 @@ export default function FacilityDetailPage() {
 
   if (!facility) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-indigo-900/20 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 dark:from-gray-900 dark:via-gray-900/20 dark:to-gray-900/20 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
             Facility not found
@@ -35,7 +36,7 @@ export default function FacilityDetailPage() {
   const isPlasticSurgery = facility.category === 'plastic-surgery';
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-indigo-900/20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 dark:from-gray-900 dark:via-gray-900/20 dark:to-gray-900/20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
         <button
@@ -51,7 +52,7 @@ export default function FacilityDetailPage() {
         {/* Main Content */}
         <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden shadow-xl">
           {/* Header Image */}
-          <div className="relative w-full h-80 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-gray-800 dark:to-gray-700">
+          <div className="relative w-full h-80 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700">
             <Image
               src={facility.imageUrl}
               alt={facility.name}
@@ -105,11 +106,11 @@ export default function FacilityDetailPage() {
             </div>
 
             {/* QR Code Discount Information */}
-            <div className="mb-8 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-6">
+            <div className="mb-8 bg-gradient-to-r from-gray-100 to-gray-100 dark:from-gray-800/20 dark:to-gray-800/20 border-2 border-gray-300 dark:border-gray-700 rounded-xl p-6">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
-                  <div className="w-16 h-16 bg-white dark:bg-gray-800 rounded-xl flex items-center justify-center border-2 border-amber-300 dark:border-amber-700">
-                    <svg className="w-10 h-10 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className="w-16 h-16 bg-white dark:bg-gray-800 rounded-xl flex items-center justify-center border-2 border-gray-300 dark:border-gray-700">
+                    <svg className="w-10 h-10 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
                     </svg>
                   </div>
@@ -119,7 +120,7 @@ export default function FacilityDetailPage() {
                     <span>🎁 Special OMNI Pass Discount</span>
                   </h3>
                   <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed mb-3">
-                    <strong className="text-amber-700 dark:text-amber-400">Show your OMNI Pass QR code at the hospital and receive an automatic 15% discount on all services!</strong>
+                    <strong className="text-gray-700 dark:text-gray-400">Show your OMNI Pass QR code at the hospital and receive an automatic 15% discount on all services!</strong>
                   </p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     No coupon needed - simply display your QR code from the OMNI Pass app at reception.
@@ -133,7 +134,7 @@ export default function FacilityDetailPage() {
               {/* Location */}
               <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-5">
                 <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-                  <svg className="w-5 h-5 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
@@ -145,13 +146,13 @@ export default function FacilityDetailPage() {
               {/* Price Range */}
               <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-5">
                 <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-                  <svg className="w-5 h-5 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   {t.medical.priceRange}
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300 font-semibold">{facility.priceRange}</p>
-                <p className="text-sm text-amber-600 dark:text-amber-400 mt-1">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                   * 15% discount applied with QR code
                 </p>
               </div>
@@ -159,7 +160,7 @@ export default function FacilityDetailPage() {
               {/* Languages */}
               <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-5">
                 <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-                  <svg className="w-5 h-5 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
                   </svg>
                   {t.medical.languages}
@@ -168,7 +169,7 @@ export default function FacilityDetailPage() {
                   {facility.languages.map((lang) => (
                     <span
                       key={lang}
-                      className="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-lg text-sm font-medium"
+                      className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-medium"
                     >
                       {lang}
                     </span>
@@ -181,7 +182,7 @@ export default function FacilityDetailPage() {
             {/* Services */}
             <div className="mb-8">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <svg className="w-6 h-6 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-6 h-6 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                 </svg>
                 {t.medical.servicesOffered}
@@ -210,7 +211,7 @@ export default function FacilityDetailPage() {
                 {facility.specialties.map((specialty) => (
                   <span
                     key={specialty}
-                    className="px-4 py-2 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-xl font-medium"
+                    className="px-4 py-2 bg-gradient-to-r from-gray-600 to-gray-700 text-white rounded-xl font-medium"
                   >
                     {specialty}
                   </span>
@@ -225,8 +226,8 @@ export default function FacilityDetailPage() {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {facility.hasAirportPickup && (
-                  <div className="flex items-start gap-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
-                    <svg className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className="flex items-start gap-3 bg-gray-100 dark:bg-gray-800/20 border border-gray-200 dark:border-gray-800 rounded-xl p-4">
+                    <svg className="w-6 h-6 text-gray-600 dark:text-gray-400 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                     </svg>
                     <div>
@@ -240,8 +241,8 @@ export default function FacilityDetailPage() {
                   </div>
                 )}
                 {facility.hasInterpreter && (
-                  <div className="flex items-start gap-3 bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-xl p-4">
-                    <svg className="w-6 h-6 text-purple-600 dark:text-purple-400 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className="flex items-start gap-3 bg-gray-100 dark:bg-gray-800/20 border border-gray-200 dark:border-gray-800 rounded-xl p-4">
+                    <svg className="w-6 h-6 text-gray-600 dark:text-gray-400 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
                     </svg>
                     <div>
@@ -274,6 +275,12 @@ export default function FacilityDetailPage() {
             </div>
           </div>
         </div>
+
+        {/* Reviews Section */}
+        <ReviewSection
+          entityType="medical_facility"
+          entityId={facility.id}
+        />
       </div>
     </div>
   );

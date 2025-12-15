@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useTranslation } from '@/hooks/useTranslation';
 
 interface Slide {
@@ -106,7 +105,7 @@ export default function HeroCarousel() {
 
   return (
     <div
-      className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden"
+      className="relative w-full h-[350px] md:h-[450px] lg:h-[550px] overflow-hidden"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -129,33 +128,6 @@ export default function HeroCarousel() {
               priority={index === 0}
               sizes="100vw"
             />
-            {/* Dark overlay for text readability */}
-            <div className="absolute inset-0 bg-black/40"></div>
-          </div>
-
-          {/* Content */}
-          <div className={`relative h-full flex ${index === 0 ? 'items-start pt-16 md:pt-20' : 'items-end pb-16 md:pb-20'}`}>
-            <div className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full ${index === 0 ? 'flex justify-end' : ''}`}>
-              <div className={`flex flex-col ${index === 0 ? 'items-end text-right max-w-md' : 'items-start text-left max-w-2xl'}`}>
-                <h1 className={`text-2xl md:text-3xl lg:text-5xl font-bold text-white drop-shadow-2xl animate-fade-in ${index === 0 ? 'mb-1.5 md:mb-2' : 'mb-3 md:mb-4'}`}>
-                  {slide.title}
-                </h1>
-                {index === 0 && (
-                  <p className="text-sm md:text-lg lg:text-xl text-white/95 drop-shadow-lg mb-2 md:mb-3">
-                    {slide.subtitle}
-                  </p>
-                )}
-                {slide.cta && (
-                  <Link
-                    href={slide.cta.link}
-                    className="inline-flex items-center justify-center px-4 py-2 md:px-5 md:py-2.5 text-sm md:text-base lg:text-lg text-white font-bold rounded-lg hover:opacity-90 transition-all shadow-lg"
-                    style={{ backgroundColor: '#171b26' }}
-                  >
-                    {slide.cta.text} →
-                  </Link>
-                )}
-              </div>
-            </div>
           </div>
         </div>
       ))}

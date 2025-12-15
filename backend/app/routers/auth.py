@@ -1,12 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from datetime import timedelta
+from datetime import timedelta, datetime
 from app.database import get_db
 from app.models.user import User
 from app.schemas.auth import UserRegister, UserLogin, Token, UserResponse
 from app.utils.auth import get_password_hash, verify_password, create_access_token
 from app.utils.dependencies import get_current_user
 from app.config import settings
+from app.services.google_sheets import sheets_service
 
 router = APIRouter()
 
@@ -54,6 +55,30 @@ async def register(user_data: UserRegister, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_user)
 
+    # Sync to Google Sheets
+    try:
+        sheets_service.sync_user({
+            'id': new_user.id,
+            'customer_id': new_user.customer_id,
+            'name': new_user.name,
+            'email': new_user.email,
+            'country': new_user.country,
+            'nationality': new_user.nationality,
+            'phone': new_user.phone,
+            'preferred_language': new_user.preferred_language,
+            'passport_number': new_user.passport_number,
+            'date_of_birth': new_user.date_of_birth,
+            'passport_expiry': new_user.passport_expiry,
+            'provider': new_user.provider,
+            'provider_id': new_user.provider_id,
+            'profile_picture': new_user.profile_picture,
+            'last_login': str(new_user.last_login) if new_user.last_login else '',
+            'created_at': str(new_user.created_at),
+            'updated_at': str(new_user.updated_at)
+        })
+    except Exception as e:
+        print(f"[Google Sheets] Failed to sync user on registration: {e}")
+
     return new_user
 
 @router.post("/login", response_model=Token)
@@ -96,6 +121,34 @@ async def login(credentials: UserLogin, db: Session = Depends(get_db)):
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password"
         )
+
+    # Update last login time
+    user.last_login = datetime.utcnow()
+    db.commit()
+
+    # Update Google Sheets
+    try:
+        sheets_service.update_user(user.id, {
+            'id': user.id,
+            'customer_id': user.customer_id,
+            'name': user.name,
+            'email': user.email,
+            'country': user.country,
+            'nationality': user.nationality,
+            'phone': user.phone,
+            'preferred_language': user.preferred_language,
+            'passport_number': user.passport_number,
+            'date_of_birth': user.date_of_birth,
+            'passport_expiry': user.passport_expiry,
+            'provider': user.provider,
+            'provider_id': user.provider_id,
+            'profile_picture': user.profile_picture,
+            'last_login': str(user.last_login),
+            'created_at': str(user.created_at),
+            'updated_at': str(user.updated_at)
+        })
+    except Exception as e:
+        print(f"[Google Sheets] Failed to update user on login: {e}")
 
     # Create access token
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)

@@ -6,7 +6,7 @@ export default function AboutPage() {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-indigo-900/20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-gray-50 to-gray-50 dark:from-gray-900 dark:via-gray-900/20 dark:to-gray-900/20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-3">
           <span className="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
@@ -45,8 +45,8 @@ export default function AboutPage() {
 
           {/* Key Benefits */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center p-6 bg-gradient-to-br from-vibrant-purple-50 to-vibrant-purple-100 dark:from-vibrant-purple-900/20 dark:to-vibrant-purple-800/20 rounded-xl border border-vibrant-purple-200 dark:border-vibrant-purple-800">
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-vibrant-purple-500 to-vibrant-purple-600 rounded-xl mb-4 shadow-lg">
+            <div className="text-center p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900/20 dark:to-gray-800/20 rounded-xl border border-gray-200 dark:border-gray-800">
+              <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-gray-500 to-gray-600 rounded-xl mb-4 shadow-lg">
                 <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -57,8 +57,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="text-center p-6 bg-gradient-to-br from-vibrant-pink-50 to-vibrant-pink-100 dark:from-vibrant-pink-900/20 dark:to-vibrant-pink-800/20 rounded-xl border border-vibrant-pink-200 dark:border-vibrant-pink-800">
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-vibrant-pink-500 to-vibrant-pink-600 rounded-xl mb-4 shadow-lg">
+            <div className="text-center p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900/20 dark:to-gray-800/20 rounded-xl border border-gray-200 dark:border-gray-800">
+              <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-gray-500 to-gray-600 rounded-xl mb-4 shadow-lg">
                 <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                 </svg>
@@ -69,8 +69,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="text-center p-6 bg-gradient-to-br from-vibrant-blue-50 to-vibrant-blue-100 dark:from-vibrant-blue-900/20 dark:to-vibrant-blue-800/20 rounded-xl border border-vibrant-blue-200 dark:border-vibrant-blue-800">
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-vibrant-blue-500 to-vibrant-blue-600 rounded-xl mb-4 shadow-lg">
+            <div className="text-center p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900/20 dark:to-gray-800/20 rounded-xl border border-gray-200 dark:border-gray-800">
+              <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-gray-500 to-gray-600 rounded-xl mb-4 shadow-lg">
                 <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
@@ -84,7 +84,7 @@ export default function AboutPage() {
         </div>
 
         {/* How It Works Section */}
-        <div className="bg-gradient-to-br from-vibrant-purple-500 via-vibrant-purple-600 to-vibrant-blue-500 rounded-2xl p-8 mb-8 shadow-xl text-white">
+        <div className="bg-gradient-to-br from-gray-500 via-gray-600 to-gray-500 rounded-2xl p-8 mb-8 shadow-xl text-white">
           <h2 className="text-3xl font-bold mb-8 text-center">How It Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="text-center">
@@ -159,7 +159,7 @@ export default function AboutPage() {
               <h3 className="text-lg font-semibold mb-2">{t.about.transportation}</h3>
               <p className="text-warning-50">{t.about.transportationDesc}</p>
             </div>
-            <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl p-6 text-white hover:shadow-xl hover:shadow-indigo-500/30 transition-all transform hover:scale-105">
+            <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-xl p-6 text-white hover:shadow-xl hover:shadow-gray-500/30 transition-all transform hover:scale-105">
               <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center mb-4">
                 <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />

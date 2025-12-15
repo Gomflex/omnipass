@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { mockPointBalance, mockTransactions, mockMissions, mockStats } from '@/lib/mockData';
 import { useAuthStore } from '@/store/authStore';
 import { useTranslation } from '@/hooks/useTranslation';
@@ -15,9 +14,6 @@ export default function DashboardPage() {
   const [showChargeModal, setShowChargeModal] = useState(false);
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
   const [customAmount, setCustomAmount] = useState('');
-
-  // For demo purposes, generate a customer ID if not present
-  const customerId = user?.customer_id || 'OMP-USA-A1B2-123';
 
   // Filter transactions
   const filteredTransactions = mockTransactions.filter((transaction) => {
@@ -38,10 +34,10 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pastel-blue-50 via-white to-pastel-purple-50 dark:bg-gray-950">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="px-4 py-6">
         {/* Header */}
         <div className="mb-6">
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight mb-2 text-gray-900 dark:text-gray-50">
+          <h1 className="text-2xl text-2xl font-bold tracking-tight mb-2 text-gray-900 dark:text-gray-50">
             {t.dashboard.title}
           </h1>
           <p className="text-sm text-gray-600 dark:text-gray-400">{t.dashboard.subtitle}</p>
@@ -58,7 +54,7 @@ export default function DashboardPage() {
                 <div className="flex items-center justify-between mb-6">
                   <div>
                     <p className="text-white/80 text-sm font-medium mb-2">{t.dashboard.pointsBalance}</p>
-                    <p className="text-white text-4xl md:text-5xl font-bold mb-1">
+                    <p className="text-white text-4xl text-4xl font-bold mb-1">
                       {mockPointBalance.balance.toLocaleString()}
                     </p>
                     <p className="text-white/70 text-xs">
@@ -96,9 +92,9 @@ export default function DashboardPage() {
         </div>
 
         {/* Main Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="flex flex-col gap-6">
           {/* Transaction History */}
-          <div className="lg:col-span-2">
+          <div className="">
             <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 shadow-lg">
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5">
                 <h2 className="text-lg font-bold text-gray-900 dark:text-gray-50 mb-3 sm:mb-0">{t.points.transactionHistory}</h2>

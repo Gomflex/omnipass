@@ -96,7 +96,7 @@ export default function HealthCheckupPage() {
           {filteredHospitals.map(hospital => (
             <div key={hospital.id} className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-md hover:border-primary-500 dark:hover:border-primary-500 transition-all">
               {/* Hospital Image */}
-              <div className="relative w-full h-48 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-700 overflow-hidden">
+              <div className="relative w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 overflow-hidden">
                 <Image
                   src={hospital.imageUrl}
                   alt={hospital.name}
@@ -128,7 +128,7 @@ export default function HealthCheckupPage() {
                       {hospital.location}
                     </div>
                   </div>
-                  <div className="bg-gradient-to-r from-vibrant-green-500 to-vibrant-green-600 px-3 py-1 rounded-lg text-sm font-bold text-white flex items-center gap-1">
+                  <div className="bg-gradient-to-r from-gray-600 to-gray-700 px-3 py-1 rounded-lg text-sm font-bold text-white flex items-center gap-1">
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                     </svg>
@@ -146,12 +146,12 @@ export default function HealthCheckupPage() {
                   <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">{t.medical.programs}</h3>
                   <div className="flex flex-wrap gap-2">
                     {hospital.services.slice(0, 4).map((service, idx) => (
-                      <span key={idx} className="bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 px-3 py-1 rounded-lg text-sm">
+                      <span key={idx} className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-lg text-sm">
                         {service}
                       </span>
                     ))}
                     {hospital.services.length > 4 && (
-                      <span className="text-primary-600 dark:text-primary-400 px-3 py-1 text-sm font-medium">
+                      <span className="text-gray-600 dark:text-gray-400 px-3 py-1 text-sm font-medium">
                         +{hospital.services.length - 4} {t.medical.more}
                       </span>
                     )}
@@ -163,7 +163,7 @@ export default function HealthCheckupPage() {
                   <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">{t.medical.languages}</h3>
                   <div className="flex flex-wrap gap-2">
                     {hospital.languages.map((lang, idx) => (
-                      <span key={idx} className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-lg text-sm flex items-center gap-1">
+                      <span key={idx} className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-lg text-sm flex items-center gap-1">
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
                         </svg>
@@ -177,7 +177,7 @@ export default function HealthCheckupPage() {
                 <div className="flex items-center gap-4 mb-4 text-sm text-gray-600 dark:text-gray-400">
                   {hospital.hasAirportPickup && (
                     <div className="flex items-center gap-1">
-                      <svg className="w-4 h-4 text-success-600 dark:text-success-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="w-4 h-4 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                       {t.medical.airportPickup}
@@ -185,7 +185,7 @@ export default function HealthCheckupPage() {
                   )}
                   {hospital.hasInterpreter && (
                     <div className="flex items-center gap-1">
-                      <svg className="w-4 h-4 text-success-600 dark:text-success-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="w-4 h-4 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                       {t.medical.interpreter}
@@ -194,14 +194,14 @@ export default function HealthCheckupPage() {
                 </div>
 
                 {/* Price Range */}
-                <div className="mb-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div className="mb-4 p-3 bg-gray-100 dark:bg-gray-800 rounded-lg">
                   <span className="text-sm text-gray-600 dark:text-gray-400">{t.medical.priceRange} </span>
                   <span className="font-semibold text-gray-900 dark:text-white">{hospital.priceRange}</span>
                 </div>
 
                 {/* Book Button */}
                 <Link href={`/medical/booking?facilityId=${hospital.id}&category=health-checkup`}>
-                  <button className="w-full bg-primary-900 text-white py-3 px-6 rounded-lg hover:bg-primary-800 transition-all font-medium shadow-sm hover:shadow-md">
+                  <button className="w-full bg-gray-700 text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition-all font-medium shadow-sm hover:shadow-md">
                     {t.medical.bookCheckup}
                   </button>
                 </Link>

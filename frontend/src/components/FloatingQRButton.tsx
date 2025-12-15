@@ -9,7 +9,7 @@ import Barcode from 'react-barcode';
 const DISPLAY_TIME = 5; // 5 seconds
 
 export default function FloatingQRButton() {
-  const { user, isAuthenticated } = useAuthStore();
+  const { user } = useAuthStore();
   const [showModal, setShowModal] = useState(false);
   const [activeTab, setActiveTab] = useState<'qr' | 'barcode'>('qr');
   const [countdown, setCountdown] = useState(DISPLAY_TIME);
@@ -17,7 +17,6 @@ export default function FloatingQRButton() {
 
   const customerId = user?.customer_id || 'OMP-USA-A1B2-123';
   const userName = user?.name || 'Guest';
-  const pointsBalance = mockPointBalance.balance;
 
   const handleOpenModal = () => {
     setShowModal(true);

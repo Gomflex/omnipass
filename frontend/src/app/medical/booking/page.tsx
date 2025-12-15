@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { getFacilityById, bookingOptions } from '@/lib/medicalData';
@@ -9,7 +9,7 @@ import { useAuthStore } from '@/store/authStore';
 function BookingForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { user } = useAuthStore();
+  const { } = useAuthStore();
 
   const facilityId = searchParams.get('facilityId');
   const category = searchParams.get('category');
@@ -65,7 +65,7 @@ function BookingForm() {
 
   if (!facility) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-indigo-900/20 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-gray-50 to-gray-50 dark:from-gray-900 dark:via-gray-900/20 dark:to-gray-900/20 flex items-center justify-center">
         <div className="text-center">
           <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -82,7 +82,7 @@ function BookingForm() {
   const colorClass = category === 'plastic-surgery' ? 'accent' : 'success';
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-indigo-900/20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-gray-50 to-gray-50 dark:from-gray-900 dark:via-gray-900/20 dark:to-gray-900/20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
         <div className="mb-8">
@@ -249,7 +249,7 @@ function BookingForm() {
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Booking Summary</h3>
 
               {/* Discount Info */}
-              <div className="bg-gradient-to-r from-vibrant-green-500 to-vibrant-green-600 rounded-xl p-4 text-white mb-4">
+              <div className="bg-gradient-to-r from-gray-500 to-gray-600 rounded-xl p-4 text-white mb-4">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-sm font-medium">Your Discount</span>
                   <div className="flex items-center gap-1">
@@ -311,7 +311,7 @@ function BookingForm() {
 export default function BookingPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-indigo-900/20 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-gray-50 to-gray-50 dark:from-gray-900 dark:via-gray-900/20 dark:to-gray-900/20 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
           <p className="text-gray-600 dark:text-gray-400">Loading...</p>

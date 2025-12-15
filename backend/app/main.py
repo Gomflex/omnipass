@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import auth, users, points, stores, missions, chatbot
+from app.routers import auth, users, points, stores, chatbot, reviews, oauth
 from app.database import engine, Base
 from app.models.user import User  # Import all models here
+from app.models.review import Review, ReviewReply, ReviewHelpful  # Import review models
 
 app = FastAPI(
     title="OMNIPASS API",
@@ -26,11 +27,12 @@ app.add_middleware(
 
 # Include routers
 app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
+app.include_router(oauth.router, prefix="/api/oauth", tags=["OAuth Social Login"])
 app.include_router(users.router, prefix="/api/users", tags=["Users"])
 app.include_router(points.router, prefix="/api/points", tags=["Points"])
 app.include_router(stores.router, prefix="/api/stores", tags=["Stores"])
-app.include_router(missions.router, prefix="/api/missions", tags=["Missions"])
 app.include_router(chatbot.router, prefix="/api/chatbot", tags=["Chatbot"])
+app.include_router(reviews.router, prefix="/api/reviews", tags=["Reviews"])
 
 @app.get("/")
 async def root():
